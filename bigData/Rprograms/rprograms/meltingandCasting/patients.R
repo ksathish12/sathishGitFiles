@@ -1,0 +1,12 @@
+library("reshape")
+
+pao2<-round(rnorm(9,mean=70,sd=10))
+pcvo2<-round(rnorm(9,mean = 40,sd=8))
+pid<-rep(1:3,each=3)
+tid<-rep(1:3,each=1)
+patient<-data.frame(pid,tid,pao2,pcvo2)
+#print(patient)
+a<-melt(patient,id=c("pid","tid"),measure.vars=c("pao2","pcvo2"))
+#print(a)
+conclusion<-cast(a,pid~variable,mean)
+print(conclusion)
